@@ -11,7 +11,7 @@ const FormulaInput = () => {
   const [input, setInput] = useState('');
   const { data: suggestions } = useSuggestions(input);
   const [result, setResult] = useState('');
-
+/*
   const calculateResult = () => {
     try {
       const expression = formula.join('');
@@ -25,10 +25,10 @@ const FormulaInput = () => {
       return '';
     }
   };
-
   useEffect(() => {
     setResult(calculateResult());
   }, [formula]);
+*/
 
   const handleTagSelection = (e, value) => {
     if (value) {
@@ -39,16 +39,15 @@ const FormulaInput = () => {
       handleAddTag(value);
     }
   };
-
   const handleAddTag = (tag) => {
     let parsedTag = tag;
     if (typeof tag === 'string') {
       parsedTag = tag.trim();
     }
-
     let lastTag = formula[formula.length - 1];
     if (lastTag && (parsedTag[0] === '+' || parsedTag[0] === '-' || parsedTag[0] === '*' || parsedTag[0] === '/')) {
       lastTag += parsedTag;
+      console.log(lastTag)
       const updatedFormula = [...formula.slice(0, -1), lastTag];
       setFormula(updatedFormula);
       setInput(''); // Reset input state after adding operator
